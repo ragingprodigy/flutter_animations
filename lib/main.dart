@@ -58,7 +58,7 @@ class _LogoWidgetState extends State<LogoWidget> with SingleTickerProviderStateM
         setState(() {
 
         });
-      });
+      })..addStatusListener((state) => print("$state"));
 
     controller.forward();
   }
