@@ -23,10 +23,8 @@ class MyApp extends StatelessWidget {
 }
 
 class ScaleAnimatedWidget extends AnimatedWidget {
-  ScaleAnimatedWidget({ Key key, Animation<double> animation, this.child })
+  ScaleAnimatedWidget({ Key key, Animation<double> animation })
   : super(key: key, listenable: animation);
-
-  final Widget child;
 
   @override
   Widget build(BuildContext context) {
@@ -34,10 +32,10 @@ class ScaleAnimatedWidget extends AnimatedWidget {
 
     return Center(
       child: Container(
-        margin: const EdgeInsets.symmetric(vertical: 8.0),
+        margin: const EdgeInsets.symmetric(vertical: 10.0),
         width: animation.value,
         height: animation.value,
-        child: this.child,
+        child: FlutterLogo(),
       ),
     );
   }
@@ -54,8 +52,8 @@ class _LogoWidgetState extends State<LogoWidget> with SingleTickerProviderStateM
 
   initState() {
     super.initState();
-    controller = AnimationController(vsync: this, duration: const Duration(milliseconds: 3000));
-    animation = Tween(begin: 0.0, end: 250.0).animate(controller)
+    controller = AnimationController(vsync: this, duration: const Duration(milliseconds: 2000));
+    animation = Tween(begin: 0.0, end: 350.0).animate(controller)
       ..addListener(() {
         setState(() {
 
@@ -67,10 +65,7 @@ class _LogoWidgetState extends State<LogoWidget> with SingleTickerProviderStateM
 
   @override
   Widget build(BuildContext context) {
-    return ScaleAnimatedWidget(
-      animation: animation,
-      child: FlutterLogo(),
-    );
+    return ScaleAnimatedWidget(animation: animation);
   }
 
   @override
